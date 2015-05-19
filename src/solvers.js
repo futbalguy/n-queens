@@ -64,8 +64,6 @@ window.countNRooksSolutions = function(n) {
     } else {
       var row = matrix[rowIndex];
       for (var colIndex = 0; colIndex < row.length; colIndex++) {
-        // var row = matrix[rowIndex];
-
         row[colIndex] = 1;
         var board = new Board(matrix);
         if (!board.hasAnyRooksConflicts()) {
@@ -114,7 +112,7 @@ window.findNQueensSolution = function(n) {
       for (var colIndex = 0; colIndex < row.length; colIndex++) {
         row[colIndex] = 1;
         var board = new Board(matrix);
-        if (!board.hasAnyQueensConflicts()) {
+        if (!board.hasAnyQueensConflicts() && countQueens(matrix) <= n) {
           if (iterateRow(matrix,rowIndex + 1,0)) {
             return matrix;
           }
@@ -160,7 +158,7 @@ window.countNQueensSolutions = function(n) {
       var row = board.get(rowIndex);
       for (var colIndex = 0; colIndex < row.length; colIndex++) {
         row[colIndex] = 1;
-        if (!board.hasAnyQueensConflicts()) {
+        if (!board.hasAnyQueensConflicts() && countQueens(board) <= n) {
           iterateRow(board,rowIndex + 1,0);
         }
         row[colIndex] = 0;
